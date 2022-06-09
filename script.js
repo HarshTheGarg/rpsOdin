@@ -1,16 +1,19 @@
+let usrCounter = 0;
+let compCounter = 0;
+
 function compSelection(){
     const num = Math.floor(Math.random() * 3);
     return numToSym(num);
 };
 
-function usrSelection(){
-    const usrChoice = (prompt("Rock, Paper or Scissors?")).toLowerCase();
+/* function usrSelection(){
+    const usrChoice = prompt("Rock, Paper or Scissors?");
     if(usrChoice != 'rock' && usrChoice != 'paper' & usrChoice != 'scissors'){
         return "Error"
     };
 
-    return usrChoice;
-};
+    return usrChoice.toLowerCase();
+}; */
 
 function numToSym(num){
     switch (num){
@@ -42,54 +45,61 @@ function decider(comp, usr){
     }
 };
 
-let usrCounter = 0;
-let compCounter = 0;
 
-function game(){
-    for(let i = 0; i < 5; i++){
-        comp = compSelection();
-        usr = usrSelection();
-        
-        if(usr == 'Error'){
-            console.log("Wrong Input");
-            i--;
-            continue;
-        };
+function game(usr){
+    comp = compSelection();
+    // usr = usrSelection();
+    /* 
+    if(usr == 'Error'){
+        console.log("Wrong Input");
+        i--;
+        continue;
+    }; */
 
-        const winner = decider(comp, usr);
+    const winner = decider(comp, usr);
 
-        if(winner == "Error"){
-            console.log("Some Error Occured");
-            i--;
-            continue;
-        };
+    /* if(winner == "Error"){
+        console.log("Some Error Occured");
+        i--;
+        continue;
+    }; */
 
-        switch(winner){
-            case "user":
-                usrCounter++;
-                break;
-            case "computer":
-                compCounter++;
-        }
+    switch(winner){
+        case "user":
+            usrCounter++;
+            break;
+        case "computer":
+            compCounter++;
+    }
 
-        let msg;
-        if (winner == "Tie"){
-            msg = "Its a tie";
-        }else if(winner == "user"){
-            msg = "You win";
-        }else if(winner == "computer"){
-            msg = "Computer Wins";
-        }else{
-            msg = "Some Error Occured";
-        }
-
-        console.log(`You chose ${usr}\n` +
-        `Computer chose ${comp}\n`+
-        `${msg}`);
-
+    let msg;
+    if (winner == "Tie"){
+        msg = "Its a tie";
+    }else if(winner == "user"){
+        msg = "You win";
+    }else if(winner == "computer"){
+        msg = "Computer Wins";
+    }else{
+        msg = "Some Error Occured";
     };
 
-    let finalMessage;
+    console.log(`You chose ${usr}\n` +
+    `Computer chose ${comp}\n`+
+    `${msg}`);
+
+    if(usrCounter == 5 || compCounter == 5){
+        finalMsg = usrCounter > compCounter ? "You Win!" : "You Lose";
+        console.log(
+            `Points:\n` +
+            `User:\t${usrCounter}\n` +
+            `Computer:\t${compCounter}\n` +
+            `${finalMsg}`
+        );
+        buttons.forEach(element => element.removeEventListener('click', buttonClick));
+        
+    };
+
+    /* let finalMessage;
     if (usrCounter > compCounter){
         finalMessage = "You Win";
     }else if(usrCounter < compCounter){
@@ -105,7 +115,18 @@ function game(){
         `User:\t${usrCounter}\n` +
         `Computer:\t${compCounter}\n` +
         `${finalMessage}`
-    );
+    ); */
 };
 
-game()
+const buttons = Array.from(document.querySelectorAll(".rps_button"));
+buttons.forEach(element => {
+    element.addEventListener('click', buttonClick);
+});
+
+function buttonClick(){
+    // console.log(this.innerHTML);
+    game((this.innerHTML).toLowerCase());
+    
+}
+
+// game()
