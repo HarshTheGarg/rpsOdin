@@ -56,6 +56,9 @@ function game(usr){
         continue;
     }; */
 
+    usrChoiceDiv.textContent = `You chose ${usr}`;
+    compChoiceDiv.textContent = `Computer chose ${comp}`;
+
     const winner = decider(comp, usr);
 
     /* if(winner == "Error"){
@@ -72,7 +75,10 @@ function game(usr){
             compCounter++;
     }
 
-    let msg;
+    usrPointsDiv.textContent = `You: ${usrCounter}`;
+    compPointsDiv.textContent = `Computer: ${compCounter}`;
+
+    /* let msg;
     if (winner == "Tie"){
         msg = "Its a tie";
     }else if(winner == "user"){
@@ -81,20 +87,21 @@ function game(usr){
         msg = "Computer Wins";
     }else{
         msg = "Some Error Occured";
-    };
+    }; */
 
-    console.log(`You chose ${usr}\n` +
+    /* console.log(`You chose ${usr}\n` +
     `Computer chose ${comp}\n`+
-    `${msg}`);
+    `${msg}`); */
 
     if(usrCounter == 5 || compCounter == 5){
         finalMsg = usrCounter > compCounter ? "You Win!" : "You Lose";
-        console.log(
+        /* console.log(
             `Points:\n` +
             `User:\t${usrCounter}\n` +
             `Computer:\t${compCounter}\n` +
             `${finalMsg}`
-        );
+        ); */
+        resultDiv.textContent = `${finalMsg}`;
         buttons.forEach(element => element.removeEventListener('click', buttonClick));
         
     };
@@ -122,6 +129,14 @@ const buttons = Array.from(document.querySelectorAll(".rps_button"));
 buttons.forEach(element => {
     element.addEventListener('click', buttonClick);
 });
+
+const usrChoiceDiv = document.querySelector(".chosen_container .usr_choice");
+const compChoiceDiv = document.querySelector(".chosen_container .comp_choice");
+
+const usrPointsDiv = document.querySelector(".points .usr_points");
+const compPointsDiv = document.querySelector(".points .comp_points");
+
+const resultDiv = document.querySelector(".result");
 
 function buttonClick(){
     // console.log(this.innerHTML);
