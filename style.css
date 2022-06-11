@@ -46,14 +46,15 @@ header {
 }
 
 .chosen_container {
-    padding: 80px;
+    padding: 70px;
     display: flex;
     justify-content: space-evenly;
     background-color: #272727;
+    font-size: 15px;
 }
 
 .chosen_container img {
-    width: 150px;
+    width: 100px;
 }
 
 .chosen_container div {
