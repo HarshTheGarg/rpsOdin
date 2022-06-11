@@ -56,8 +56,8 @@ function game(usr){
         continue;
     }; */
 
-    usrChoiceDiv.textContent = `You chose ${usr}`;
-    compChoiceDiv.textContent = `Computer chose ${comp}`;
+    usrChoiceImg.src = `./Assets/Images/${usr}.png`;
+    compChoiceImg.src = `./Assets/Images/${comp}.png`;
 
     const winner = decider(comp, usr);
 
@@ -94,13 +94,15 @@ function game(usr){
     `${msg}`); */
 
     if(usrCounter == 5 || compCounter == 5){
-        finalMsg = usrCounter > compCounter ? "You Win!" : "You Lose";
+        buttonContainer.style.display = 'none';
+        finalMsg = usrCounter > compCounter ? "You Win!!" : "You Lose :(";
         /* console.log(
             `Points:\n` +
             `User:\t${usrCounter}\n` +
             `Computer:\t${compCounter}\n` +
             `${finalMsg}`
         ); */
+        resultDiv.style.display = 'block';
         resultDiv.textContent = `${finalMsg}`;
         buttons.forEach(element => element.removeEventListener('click', buttonClick));
         
@@ -125,13 +127,14 @@ function game(usr){
     ); */
 };
 
+const buttonContainer = document.querySelector(".button_container");
 const buttons = Array.from(document.querySelectorAll(".rps_button"));
 buttons.forEach(element => {
     element.addEventListener('click', buttonClick);
 });
 
-const usrChoiceDiv = document.querySelector(".chosen_container .usr_choice");
-const compChoiceDiv = document.querySelector(".chosen_container .comp_choice");
+const usrChoiceImg = document.querySelector(".chosen_container .usr_choice img");
+const compChoiceImg = document.querySelector(".chosen_container .comp_choice img");
 
 const usrPointsDiv = document.querySelector(".points .usr_points");
 const compPointsDiv = document.querySelector(".points .comp_points");
@@ -140,8 +143,7 @@ const resultDiv = document.querySelector(".result");
 
 function buttonClick(){
     // console.log(this.innerHTML);
-    game((this.innerHTML).toLowerCase());
-    
+    game((this.querySelector("span").textContent).toLowerCase().trim());
 }
 
 // game()
