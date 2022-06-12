@@ -1,4 +1,6 @@
 # Rock Paper Scissors
-Now with a gui in development!
 
-Just click on the buttons for your choice and take a look at the console for the results!
+Simply click on the buttons and look at the score. The game goes on until someone scores 5 points.
+
+
+No copyrights intended

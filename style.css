@@ -27,7 +27,7 @@ header {
 }
 
 .button_container {
-    padding: 70px 80px;
+    padding: 65px 80px;
     display: flex;
     justify-content: space-around;
 }
@@ -46,7 +46,7 @@ header {
 }
 
 .chosen_container {
-    padding: 70px;
+    padding: 65px;
     display: flex;
     justify-content: space-evenly;
     background-color: #272727;
@@ -84,8 +84,8 @@ header {
 
 footer {
     background-color: #333333;
-    padding: 50px;
-    font-size: 15px;
+    padding: 30px;
+    font-size: 13px;
 }
 
 /* * {
